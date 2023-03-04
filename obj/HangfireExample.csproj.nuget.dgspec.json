@@ -46,9 +46,9 @@
               "target": "Package",
               "version": "[1.7.*, )"
             },
-            "Hangfire.SqlServer": {
+            "Hangfire.InMemory": {
               "target": "Package",
-              "version": "[1.7.*, )"
+              "version": "[0.*, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",

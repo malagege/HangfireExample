@@ -1,5 +1,5 @@
 using Hangfire;
-using Hangfire.SqlServer;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,15 +15,7 @@ builder.Services.AddHangfire(configuration => configuration
         .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
         .UseSimpleAssemblyNameTypeSerializer()
         .UseRecommendedSerializerSettings()
-        .UseSqlServerStorage(builder.Configuration.GetConnectionString("HangfireConnection"), new SqlServerStorageOptions
-        {
-//            SchemaName = "Test",  //假如有多個專案使用同一個 Database的話，可以用這個控制
-            CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-            SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-            QueuePollInterval = TimeSpan.Zero,
-            UseRecommendedIsolationLevel = true,
-            DisableGlobalLocks = true
-        }));
+        .UseInMemoryStorage());
 
  // Add the processing server as IHostedService
 builder.Services.AddHangfireServer();

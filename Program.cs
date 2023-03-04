@@ -40,6 +40,20 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+
+app.UseHangfireDashboard();
+
+// 假如有使用  UseEndpoints 就要用下面方法。
+// app.UseEndpoints(endpoints =>
+// {
+//     endpoints.MapControllers();
+//     endpoints.MapHangfireDashboard();
+// });
+
+
+// 簡單執行 Hangfire 程式
+BackgroundJob.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
+
 app.MapControllers();
 
 app.Run();

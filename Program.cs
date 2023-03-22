@@ -56,26 +56,6 @@ BackgroundJob.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
 
 app.MapControllers();
 
-// 立即執行
-var jobId = BackgroundJob.Enqueue(
-    () => Console.WriteLine("Fire-and-forget!"));
-
-// 重複性工作
-RecurringJob.AddOrUpdate(
-    "myrecurringjob",
-    () => Console.WriteLine("Recurring!"),
-    Cron.Daily);
-
-// 延遲執行
-var jobId3 = BackgroundJob.Schedule(
-    () => Console.WriteLine("Delayed!"),
-    TimeSpan.FromSeconds(30));
-
-// 某排程執行後執行
-BackgroundJob.ContinueJobWith(
-    jobId,
-    () => Console.WriteLine("Continuation!"));
-
 
 
 app.Run();

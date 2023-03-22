@@ -1,5 +1,6 @@
 using Hangfire;
 using Hangfire.SqlServer;
+using HangfireExample.Job;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +57,6 @@ BackgroundJob.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
 
 app.MapControllers();
 
-
+BackgroundJob.Enqueue<TestJob>( job => job.Run());
 
 app.Run();
